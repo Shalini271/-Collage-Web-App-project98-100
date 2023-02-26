@@ -7,6 +7,15 @@ function start()
     recognition.start();
 } 
 
+recognition.onresult=function(event){
+console.log(event);
+Content=event.results[0][0].transcript.toLowerCase();
+if(Content=="selfie"){
+    speak();
+}
+}
+
+
 
 camera = document.getElementById("camera");
 Webcam.set({
@@ -49,10 +58,6 @@ function speak(){
      setTimeout(function(){
         img_id="selfie3";
         take_snapshot();
-        speak_data = "Taking your next Selfie in 15 seconds"; 
-        var utterThis = new SpeechSynthesisUtterance(speak_data);
-        synth.speak(utterThis);
-
      }, 15000);
 
 }
